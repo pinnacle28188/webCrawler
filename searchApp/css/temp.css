@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+html, body, h2, h3, ul, li, p, 
+header, main, section {
+  padding: 0;
+  margin: 0;
+  color: #7F7F7F;
+  background-color: #EFF2F7;
+  font-family: Cooper Black;
+  font-size: 15px;
+}
+
+button {
+	background-color: #83A5C4;
+	font-family: Calibri;
+	font-size: 26px;
+	color: #404040;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.ui-widget-header {  
+
+color: black;}
+ 
+.dialog {
+	font-size: 12px;
+	color: red;
+	font-weight: bold;	
+}
+
+.buttonSearch {
+	padding-left: 35px;
+	padding-right: 35px;	
+}
+
+.buttonShowMore {
+	padding-left: 20px;
+	padding-right: 20px;	
+}
+
+th {
+	background-color: #4B7DA9;
+	color: white;
+	font-family: Calibri;
+	font-size: 16px;
+}
+
+.thWhite {
+	background-color: white;
+	color: black;
+}
+
+.tdPas{
+	background-color: #eeeeee;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.tdPro{
+	background-color: white;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.trPas{
+	background-color: #eeeeee;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.trPro{
+	background-color: white;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.requireField{
+	background-color: #FFFFCD;
+	color: #FFFFCD; 
+}
+
+// cellspacing
+// table { border-collapse: separate; border-spacing: 5px; } // cellspacing="5"
+// table { border-collapse: collapse; border-spacing: 0px; }   // cellspacing="0"
+
+table {
+    border-collapse: collapse;
+}
+
+main {
+    
+}
+
+span.timedate {
+	border-bottom: thin solid;
+	background: #white;
+}
+
+span.timedate:hover {
+	text-decoration: none; 
+	background: #FFAD4D; 
+	z-index: 6;
+ }
+
+
+
+span.dropt {border-bottom: thin dotted; background: #4B7DA9;}
+
+span.dropt:hover {text-decoration: none; background: #4B7DA9; z-index: 6; }
+span.dropt:hover span {left: 2%; background: #eeeeee;} 
+span.dropt:hover span {margin: 20px 0 0 170px; background: #eeeeee; z-index:6;}
+
+span.dropt span {position: absolute; left: -9999px;
+  margin: 4px 0 0 0px; padding: 3px 3px 3px 3px; 
+  border-style:solid; border-color:black; border-width:1px;}
+  
+span.dropt span {position: absolute; left: -9999px;
+  margin: 20px 0 0 0px; padding: 3px 3px 3px 3px;
+  border-style:solid; border-color:black; border-width:1px; z-index: 6;}
+  
+ 

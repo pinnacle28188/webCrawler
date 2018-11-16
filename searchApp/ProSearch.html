@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+    	<title>Pro Search</title>
+
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/jquery-ui-1.10.4.custom.css">
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/jquery-steps.css"/>
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/jquery.maxlength.css"/>
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/jquery-steps.css" />
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/jquery.maxlength.css" />
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/ProSearchStyleSheet.css"/>
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/super.css">
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/twq.css"/>
+		<link rel="stylesheet" type="text/css" href="../searchApp/css/validationEngine.jquery.css">
+				
+		<script type='text/javascript' src='../searchApp/javascript/jquery-1.11.1.js'></script>
+		<script>jQuery.noConflict();</script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery.validationEngine.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery.validationEngine-en.js"></script>
+		<script type='text/javascript' src='../searchApp/javascript/modernizr.js'></script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery.steps.min.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery.plugin.min.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/jquery.maxlength.min.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/footerWP.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/qualtricsAllApps.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/overlay.js"></script>
+		
+		<!-- searchApp JavaScripts  -->		
+		<script type="text/javascript" src="../searchApp/javascript/utilities.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/request.js"></script>
+		<script type="text/javascript" src="../searchApp/javascript/buildTable.js"></script>
+		<script type="text/javascript" src="../searchApp/resource/config.js"></script>
+		
+	</head>
+	
+	<body>
+	
+	<form method="POST" id="quoteEntry" onkeydown="enterKey(event)">
+	
+	<table class="center">
+		<tr>
+			<td>
+	
+			<div align="center" class="span9 main" style="width: 500px">
+		
+			<h1 align="center">
+				<label class="FIELD title">
+					Pro Search Screen
+				</label>
+			</h1>	
+	      	
+			<div id="tabs-searchTable">
+								
+			<div  id="mainSearchScreen">
+				<table>
+					<tr>
+						<td>
+							<table style="border-collapse:separate; border-spacing:5px">
+								<tr>
+									<!-- Search Button -->
+									<td align="right">
+										<button id="search" type="button" class="buttonStyle" value="searchBtn" onclick="createResultsTable()">
+											SEARCH
+										</button>
+									</td>
+									<!-- Clear Search Button -->
+									<td align="right">
+										<button type="button" class="buttonStyle" value="searchBtn" onclick="clearSearch()">
+											NEW SEARCH
+										</button>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+      			
+					<!-- Search With -->
+					<tr>
+						<td>
+							<table id="searchTable" class="matrix" style="border-collapse:separate; border-spacing:5px">
+								<tbody>
+									<tr>
+										<td class="sizeXS search" align="left">
+        									<label class="sizeM field">
+        										Search with:
+        									</label>
+        								</td>
+										
+										<td class="searchValue" align="left">
+        									<input class="search requiredField" type="text" name="searchWithTextValue"/>
+        								</td>
+        							</tr>
+								</tbody>
+								
+							</table>
+						</td>
+					</tr>
+				</table>
+						
+			<div id="loading">
+      			<p align="center"><img src="../searchApp/images/blueLoading.gif"/></p>
+      		</div>
+      		
+      		<div class="dialog" id="dialog" title="Information">
+	   		</div>
+	   		
+			<!-- Table for Search results -->
+			<table style="border-spacing:8px">
+      			<tr>
+					<!-- Search Results -->
+					<td valign="top">
+						<div id="searchResultsTable">
+						</div>		
+					</td>		
+      					
+				</tr>
+			</table>
+      						
+			</div> <!-- Main Search Screen -->
+			</div> <!-- // tabs-searchTable -->
+					
+			</div>
+	
+			</td>
+		</tr>
+	</table>
+	
+</form>
+
+
+<script type="text/javascript">
+
+var newSearch = true;
+var showDetails = true;
+var urlRequest;
+var urlNextRequest;
+var errorInputMessage = "";
+var rtnCode = "";
+
+var searchData = null;
+
+var proWindow = null;
+
+var hasSingleRow = false;
+
+jQuery.fn.extend({
+ 	
+	 clearInputs: function() {
+		// Clear out input values
+   	this.find( "input[name='searchWithTextValue']" ).val( "" );
+   	},
+ 	
+});
+
+jQuery( document ).ready( function() {
+	// jQuery UI Tabs
+	jQuery( "#tabs-searchTable" ).tabs();
+	
+	jQuery('#loading').hide();
+	
+	jQuery('.searchValue').show();
+		
+	// Initialize field values from mediator
+	// initializeFieldValues();
+	
+	registerEvents();
+	
+});
+
+function registerEvents() {
+		
+	// Register Enter Key function
+	jQuery( "#quoteEntry" ).on( "onkeydown", this, enterKey);
+}
+
+function clearSearch() {
+	window.location.reload();
+}
+
+function createResultsTable() {
+	var url = builldURLRequest();
+	
+	// alert(url);
+		
+	try {
+			
+		jQuery('#loading').show();
+						
+		createTable(url);
+		
+	} catch (err) {
+					
+	}
+}
+
+function createTable(urlString) {
+	
+	jQuery('#loading').hide();
+	
+	createDataMessage("This is my Data");
+	
+	jQuery.ajax({
+		url: urlString,
+		async: true,
+		dataType: 'text/html',
+
+	success: function (data, status) {
+		
+		alert("HERE");
+		
+		// createDataMessage(data);
+								
+		// Handle the data for the Table
+		//try { 
+			// searchData = data;
+			// alert(searchData);
+				
+		// } catch(error) {
+			// searchData = null;   
+		// }
+			   
+		// if (searchData == null) {
+				// createDataMessage();
+		// } else {
+			
+			// if (searchData.length != "undefined" && searchData.length > 0) {
+				// hasSingleRow = false;
+			// } else {
+				// hasSingleRow = true;
+			// }
+				
+			// createTable(hasSingleRow);
+		// }
+		
+		jQuery('#loading').hide();
+	}
+
+	});
+	
+	return true;
+		
+}
+
+function createTable2222(urlString) {
+	
+	jQuery.ajax({
+		url: urlString,
+		async: true,
+		dataType: 'text/html',
+
+	success: function (data, status) {
+		
+		alert("HERE");
+		
+		// rtnCode = data.dataOutput.hdr.returnCode;
+						
+		// if (rtnCode == '0000') {
+			
+			// Handle the data for the Table
+			try { 
+				searchData = data;
+				alert(searchData);
+				
+			} catch(error) {
+				searchData = null;   
+			}
+			   
+			if (searchData == null) {
+				createNoDataMessage();
+		   } else {
+			
+				if (searchData.length != "undefined" && searchData.length > 0) {
+					hasSingleRow = false;
+				} else {
+				   hasSingleRow = true;
+			   }
+				
+				createTable(hasSingleRow);
+			}
+		   			
+			// jQuery('#loading').hide();
+		//} else {
+			
+			//jQuery('#loading').hide();
+			//showMessage('Invalid search criteria – please select valid search criteria.');
+						
+			//rtnCode = "";
+		//}
+		
+		// dataType: 'jsonp',
+			
+		jQuery('#loading').hide();
+	}
+
+	});
+		
+	return true;
+}
+		</script>	
+	</body>
+</html>

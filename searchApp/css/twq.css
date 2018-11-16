@@ -1,0 +1,39 @@
+.requiredField {
+	background-color: rgb(255, 255, 204); }
+	
+label.field {
+	text-align: right;
+	white-space: nowrap;
+	font-size: small;
+	font-weight: bold;
+	display:inline-block; }
+
+input[readonly="readonly"],
+input[readonly="readonly"]:focus {
+    background: none repeat scroll 0 0 transparent;
+	border: medium none !important;
+   	color: #000000; }
+
+ul.no-bullet {
+	padding: 0; }
+
+ul.no-bullet > li {
+	list-style-type: none;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.0em; }
+
+ul.horizontal-list {
+	padding: 0; }
+
+ul.horizontal-list > li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 5px; }
+	
+textarea.notes {
+	resize: none;
+	padding-bottom: 0;
+	margin-bottom: 0; }
+
+input.number {
+	text-align: right; }

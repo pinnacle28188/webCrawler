@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+html, body, h2, h3, ul, li, p, 
+header, main, section {
+  padding: 0;
+  margin: 0;
+  color: #7F7F7F;
+}
+
+.title{
+	color: black;
+	font-size: 30px;
+	font-weight: bold;	
+}
+
+.barTitle{
+	font-size: 200px;
+	font-weight: bold;	
+}
+
+label.date{
+	text-align: right;
+	white-space: nowrap;
+	font-size: 12px;
+	font-weight: bold;
+	display:inline-block; }
+	
+input.date{
+	text-align: right;
+	white-space: nowrap;
+	font-size: 12px;
+	display:inline-block; }		
+	
+label.search{
+	text-align: right;
+	white-space: nowrap;
+	font-size: 12px;
+	font-weight: bold;
+	display:inline-block; }
+	
+select.search{
+	text-align: right;
+	white-space: nowrap;
+	font-size: 12px;
+	display:inline-block; }		
+
+input.search{
+	white-space: nowrap;
+	font-size: 12px;
+	display:inline-block; }	
+
+button.buttonStyle {
+	background-color: #83A5C4;
+	color: #404040;
+	font-size: 12px;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.ui-widget-header {  
+color: black;
+}
+ 
+.dialog {
+	font-size: 12px;
+	color: red;
+	font-weight: bold;	
+}
+
+.data-sort{
+	cursor: pointer;
+}
+
+.expand{
+	cursor: pointer;
+}
+
+th {
+	background-color: #4B7DA9;
+	color: white;
+	font-family: Calibri;
+	font-size: 16px;
+}
+
+.thWhite {
+	background-color: white;
+	color: black;
+}
+
+.tdPas{
+	background-color: #eeeeee;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.tdPro{
+	background-color: white;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.tdNote{
+	color: red;
+	font-family: Calibri;
+	font-size: 20px;	
+}
+
+.tdNoteSave{
+	color: #2E31FF;
+	font-family: Calibri;
+	font-size: 20px;	
+}
+
+
+.trPas{
+	background-color: #eeeeee;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.trInnerTable{
+	background-color: white;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.trPro{
+	background-color: white;
+	color: black;
+	font-family: Calibri;
+	font-size: 14px;	
+}
+
+.gridLines{
+	border: 1px solid gray;
+}
+
+.requireField{
+	background-color: #FFFFCD;
+	color: #FFFFCD; 
+}
+
+// cellspacing
+// table { border-collapse: separate; border-spacing: 5px; } // cellspacing="5"
+// table { border-collapse: collapse; border-spacing: 0px; }   // cellspacing="0"
+
+table {
+    border-collapse: collapse;
+}
+
+ table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+table.InnerTable, tr.InnerTable{
+    border: 1px solid black;
+}
+
+td.InnerTableBlue{ 
+	border: 1px solid black;
+   background-color: #8DA2B5;	
+}
+
+td.InnerTableGray{ 
+	border: 1px solid black;
+   background-color: #eeeeee;	
+}
+
+.scrollit {
+    overflow-y:auto;
+    height:400px;
+}
+
+main {
+    
+}
+
+p.hidden {
+    visibility: hidden
+}
+
+span.timedate {
+	
+	background: #white;
+}
+
+span.timedate:hover {
+	text-decoration: none; 
+	background: #FFAD4D; 
+	z-index: 6;
+ }
+ 
+.footerItem { 
+	float: center; 
+}
+
+.table {width: 100%; height: 100%;}
+.row {width: 100%; min-height: 1px; height: auto; margin: 0;}
+.cell {float: left; margin: 0; padding: 0;}
+.onecol {width: 100%;}
+.twocol {width: 50%;}
+
+
+ 
